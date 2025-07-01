@@ -5,9 +5,8 @@ import com.example.amagazishi.dto.UserDtoResponse;
 import com.example.amagazishi.exception.BaseException;
 import com.example.amagazishi.mapper.UserMapper;
 import com.example.amagazishi.service.AuthService;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -15,21 +14,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Locale;
 
 @Slf4j
-@Tag(name = "Аутентификация")
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
 
     private final AuthService authService;
 
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
-
     @PostMapping("/login")
-    public String login(@Parameter(description = "Имя пользователя")
-                        @RequestParam String username,
-                        @Parameter(description = "Пароль пользователя")
+    public String login(@RequestParam String username,
                         @RequestParam String password
     ) throws BaseException {
         System.out.println("userName: "  + username + " Password: " + password);
