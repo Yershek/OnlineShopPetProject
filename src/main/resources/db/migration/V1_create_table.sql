@@ -21,12 +21,24 @@ create table if not exists product(
     description varchar not null,
     title varchar,
     grade float,
-    compound varchar
+    compound varchar,
+    image_id bigint references images(id),
+    video_id bigint references videos(id)
 );
 
 create table if not exists reviews(
     id bigserial primary key,
     description varchar not null
+);
+
+create table if not exists videos(
+    id bigserial primary key,
+    file_name varchar not null
+);
+
+create table if not exists images(
+    id bigserial primary key,
+    file_name varchar not null
 );
 
 insert into roles(role_name)
