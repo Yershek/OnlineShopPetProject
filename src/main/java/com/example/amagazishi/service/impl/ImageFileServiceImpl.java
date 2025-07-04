@@ -1,4 +1,37 @@
 package com.example.amagazishi.service.impl;
 
-public class ImageFileServiceImpl {
+import com.example.amagazishi.excaption.FileNameDoubleException;
+import com.example.amagazishi.service.ImageFileService;
+import com.example.amagazishi.service.MinIoService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.InputStream;
+
+@Service
+@RequiredArgsConstructor
+public class ImageFileServiceImpl implements ImageFileService {
+    private final MinIoService minIoService;
+
+    @Value("${minio.bucket.name.images}")
+    private String bucketName;
+
+    public InputStream getByFileName(String fileName) {
+        return minIoService.streamFile(bucketName, fileName);
+    }
+
+    @Override
+    public void save(MultipartFile file) {
+        if (minIoService.fileExists(bucketName, file.getOriginalFilename())) {
+            throw new FileNameDoubleException("error.doubleName");
+        }
+        minIoService.upload(file, bucketName);
+    }
+
+    @Override
+    public String getContentType(String fileName) {
+        return minIoService.getContentType(bucketName, fileName);
+    }
 }

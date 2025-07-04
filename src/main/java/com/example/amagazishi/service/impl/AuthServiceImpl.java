@@ -2,16 +2,16 @@ package com.example.amagazishi.service.impl;
 
 
 import com.example.amagazishi.entity.UserEntity;
-import com.example.amagazishi.exception.AuthorizeException;
-import com.example.amagazishi.exception.InvalidPasswordRestore;
+import com.example.amagazishi.excaption.AuthorizeException;
+import com.example.amagazishi.excaption.InvalidPasswordRestore;
 import com.example.amagazishi.repository.UserRepository;
 import com.example.amagazishi.security.JwtHandler;
 import com.example.amagazishi.service.AuthService;
 import com.example.amagazishi.service.MailService;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,6 +23,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
     private static final Logger log = LoggerFactory.getLogger(AuthServiceImpl.class);
@@ -30,14 +31,6 @@ public class AuthServiceImpl implements AuthService {
     private final JwtHandler jwtHandler;
     private final PasswordEncoder passwordEncoder;
     private final MailService mailService;
-
-    @Autowired
-    public AuthServiceImpl(UserRepository userRepository, JwtHandler jwtHandler, PasswordEncoder passwordEncoder, MailService mailService) {
-        this.userRepository = userRepository;
-        this.jwtHandler = jwtHandler;
-        this.passwordEncoder = passwordEncoder;
-        this.mailService = mailService;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

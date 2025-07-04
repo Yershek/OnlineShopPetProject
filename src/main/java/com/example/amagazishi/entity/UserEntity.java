@@ -1,10 +1,7 @@
 package com.example.amagazishi.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,11 +10,20 @@ import java.util.List;
 
 @Entity
 @Getter
+@With
+@Setter
+@Builder
+@AllArgsConstructor
 @RequiredArgsConstructor
+@Table(name = "users")
 public class UserEntity extends BaseEntity implements UserDetails {
+    @Column(name = "username")
     private String username;
+    @Column(name = "active_code")
     private String activeCode;
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
     @ManyToMany(mappedBy = "userEntityList",fetch = FetchType.EAGER)
     private List<RoleEntity> roles;
@@ -27,23 +33,4 @@ public class UserEntity extends BaseEntity implements UserDetails {
         return roles;
     }
 
-    public UserEntity setUsername(String username) {
-        this.username = username;
-        return this;
-    }
-
-    public UserEntity setActiveCode(String activeCode) {
-        this.activeCode = activeCode;
-        return this;
-    }
-
-    public UserEntity setEmail(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public UserEntity setPassword(String password) {
-        this.password = password;
-        return this;
-    }
 }

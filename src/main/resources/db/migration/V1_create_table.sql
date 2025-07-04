@@ -2,6 +2,7 @@ create table users(
     id bigserial primary key,
     username varchar not null,
     password varchar not null,
+    active_code varchar,
     email varchar not null
 );
 
@@ -15,15 +16,22 @@ create table if not exists m2m_users_roles(
     role_id bigint references roles(id)
 );
 
-create table if not exists product(
+create table if not exists products(
     id bigserial primary key,
     price bigint not null,
     description varchar not null,
-    title varchar,
-    grade float,
-    compound varchar,
+    title varchar not null ,
+    compound varchar not null ,
+    discount int,
     image_id bigint references images(id),
-    video_id bigint references videos(id)
+    video_id bigint references videos(id),
+    reviews_id bigint references reviews(id),
+    active varchar default 'ACTIVE'
+);
+
+create table if not exists baskets(
+    id bigserial primary key,
+    product_id bigint references products(id)
 );
 
 create table if not exists reviews(
@@ -34,6 +42,14 @@ create table if not exists reviews(
 create table if not exists videos(
     id bigserial primary key,
     file_name varchar not null
+);
+
+create table mails(
+    id bigserial primary key,
+    title varchar not null,
+    content varchar not null,
+    email_to varchar not null,
+    date_created DATE default now()
 );
 
 create table if not exists images(

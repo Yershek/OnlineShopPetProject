@@ -1,24 +1,21 @@
 package com.example.amagazishi.service.impl;
 
 import com.example.amagazishi.entity.UserEntity;
-import com.example.amagazishi.exception.UserNotFoundException;
+import com.example.amagazishi.excaption.UserNotFoundException;
 import com.example.amagazishi.repository.RoleRepository;
 import com.example.amagazishi.repository.UserRepository;
 import com.example.amagazishi.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-    }
 
     @Override
     public UserEntity getByUsername(String username) {

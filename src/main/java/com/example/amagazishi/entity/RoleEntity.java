@@ -1,16 +1,21 @@
 package com.example.amagazishi.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.List;
 
 @Entity
-@RequiredArgsConstructor
+@With
 @Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Table(name = "roles")
 public class RoleEntity extends BaseEntity implements GrantedAuthority {
+    @Column(name = "role_name")
     private String roleName;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -25,13 +30,4 @@ public class RoleEntity extends BaseEntity implements GrantedAuthority {
         return roleName;
     }
 
-    public RoleEntity setRoleName(String roleName) {
-        this.roleName = roleName;
-        return this;
-    }
-
-    public RoleEntity setUserEntityList(List<UserEntity> userEntityList) {
-        this.userEntityList = userEntityList;
-        return this;
-    }
 }
