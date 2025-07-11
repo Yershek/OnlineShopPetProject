@@ -1,11 +1,11 @@
-package com.example.amagazishi.excaption;
+package com.example.amagazishi.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class MessageIsNotFoundException extends RuntimeException {
-    public MessageIsNotFoundException(String message) {
+public class VideoNotFoundException extends BaseException {
+    public VideoNotFoundException(String message) {
         super(message);
     }
 }

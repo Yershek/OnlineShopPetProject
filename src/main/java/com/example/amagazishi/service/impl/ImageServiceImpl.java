@@ -1,7 +1,7 @@
 package com.example.amagazishi.service.impl;
 
 import com.example.amagazishi.entity.ImageEntity;
-import com.example.amagazishi.excaption.ImageNotFoundException;
+import com.example.amagazishi.exception.ImageNotFoundException;
 import com.example.amagazishi.repository.ImageRepository;
 import com.example.amagazishi.service.ImageService;
 import lombok.RequiredArgsConstructor;

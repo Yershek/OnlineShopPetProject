@@ -1,4 +1,4 @@
-package com.example.amagazishi.excaption;
+package com.example.amagazishi.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

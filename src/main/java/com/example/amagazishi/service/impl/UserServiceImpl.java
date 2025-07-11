@@ -1,7 +1,7 @@
 package com.example.amagazishi.service.impl;
 
 import com.example.amagazishi.entity.UserEntity;
-import com.example.amagazishi.excaption.UserNotFoundException;
+import com.example.amagazishi.exception.UserNotFoundException;
 import com.example.amagazishi.repository.RoleRepository;
 import com.example.amagazishi.repository.UserRepository;
 import com.example.amagazishi.service.UserService;

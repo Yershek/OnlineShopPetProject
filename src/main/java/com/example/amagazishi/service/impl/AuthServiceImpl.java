@@ -2,8 +2,8 @@ package com.example.amagazishi.service.impl;
 
 
 import com.example.amagazishi.entity.UserEntity;
-import com.example.amagazishi.excaption.AuthorizeException;
-import com.example.amagazishi.excaption.InvalidPasswordRestore;
+import com.example.amagazishi.exception.AuthorizeException;
+import com.example.amagazishi.exception.InvalidPasswordRestore;
 import com.example.amagazishi.repository.UserRepository;
 import com.example.amagazishi.security.JwtHandler;
 import com.example.amagazishi.service.AuthService;

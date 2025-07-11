@@ -1,6 +1,6 @@
 package com.example.amagazishi.service.impl;
 
-import com.example.amagazishi.excaption.FileNameDoubleException;
+import com.example.amagazishi.exception.FileNameDoubleException;
 import com.example.amagazishi.service.ImageFileService;
 import com.example.amagazishi.service.MinIoService;
 import lombok.RequiredArgsConstructor;

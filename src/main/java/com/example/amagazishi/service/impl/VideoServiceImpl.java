@@ -1,7 +1,7 @@
 package com.example.amagazishi.service.impl;
 
 import com.example.amagazishi.entity.VideoEntity;
-import com.example.amagazishi.excaption.VideoNotFoundException;
+import com.example.amagazishi.exception.VideoNotFoundException;
 import com.example.amagazishi.repository.VideoRepository;
 import com.example.amagazishi.service.VideoService;
 import lombok.RequiredArgsConstructor;

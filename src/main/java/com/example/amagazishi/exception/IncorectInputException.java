@@ -1,4 +1,4 @@
-package com.example.amagazishi.excaption;
+package com.example.amagazishi.exception;
 
 public class IncorectInputException extends BaseException {
     public IncorectInputException(String message) {

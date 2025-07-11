@@ -31,25 +31,19 @@ create table if not exists products(
 
 create table if not exists baskets(
     id bigserial primary key,
-    product_id bigint references products(id)
+    product_id bigint references products(id),
+    user_id bigint references users(id)
 );
 
 create table if not exists reviews(
     id bigserial primary key,
-    description varchar not null
+    description varchar not null,
+    product_id bigint references products(id)
 );
 
 create table if not exists videos(
     id bigserial primary key,
     file_name varchar not null
-);
-
-create table mails(
-    id bigserial primary key,
-    title varchar not null,
-    content varchar not null,
-    email_to varchar not null,
-    date_created DATE default now()
 );
 
 create table if not exists images(

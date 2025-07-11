@@ -1,4 +1,4 @@
-package com.example.amagazishi.excaption;
+package com.example.amagazishi.exception;
 
 public class NotImplementedException extends BaseException{
     public NotImplementedException() {
