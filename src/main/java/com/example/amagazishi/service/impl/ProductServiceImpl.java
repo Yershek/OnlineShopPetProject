@@ -39,6 +39,8 @@ public class ProductServiceImpl implements ProductService {
         old.setDiscount(entity.getDiscount());
         old.setCompound(entity.getCompound());
         old.setImage(entity.getImage());
+        old.setReviews(entity.getReviews());
+        old.setActive(entity.getActive());
         return productRepository.save(old);
     }
 

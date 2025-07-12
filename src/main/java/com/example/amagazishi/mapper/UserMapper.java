@@ -6,17 +6,21 @@ import com.example.amagazishi.entity.UserEntity;
 
 public class UserMapper {
     public static UserEntity toUserEntity(UserDtoRequestRegister userDtoRequestRegister) {
-        return new UserEntity()
-                .setUsername(userDtoRequestRegister.getUsername())
-                .setPassword(userDtoRequestRegister.getPassword())
-                .setEmail(userDtoRequestRegister.getEmail());
+        return UserEntity
+                .builder()
+                .username(userDtoRequestRegister.getUsername())
+                .password(userDtoRequestRegister.getPassword())
+                .email(userDtoRequestRegister.getEmail())
+                .build();
     }
 
     public static UserDtoResponse toUserDtoResponse(UserEntity userEntity) {
-        return new UserDtoResponse()
-                .setId(userEntity.getId())
-                .setUsername(userEntity.getUsername())
-                .setEmail(userEntity.getEmail());
+        return UserDtoResponse
+                .builder()
+                .id(userEntity.getId())
+                .username(userEntity.getUsername())
+                .email(userEntity.getEmail())
+                .build();
     }
 
 }

@@ -27,6 +27,8 @@ public class UserEntity extends BaseEntity implements UserDetails {
     private String password;
     @ManyToMany(mappedBy = "userEntityList",fetch = FetchType.EAGER)
     private List<RoleEntity> roles;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private BasketEntity basket;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

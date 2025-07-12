@@ -1,28 +1,29 @@
 package com.example.amagazishi.service.impl;
 
+import com.example.amagazishi.entity.ProductEntity;
 import com.example.amagazishi.entity.ReviewsEntity;
+import com.example.amagazishi.repository.ReviewsRepository;
+import com.example.amagazishi.service.ProductService;
 import com.example.amagazishi.service.ReviewsService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class ReviewsServiceImpl implements ReviewsService {
-    @Override
-    public ReviewsEntity save(ReviewsEntity entity) {
-        return null;
-    }
+
+    private final ReviewsRepository reviewsRepository;
+    private final ProductService productService;
 
     @Override
-    public ReviewsEntity update(ReviewsEntity entity) {
-        return null;
-    }
-
-    @Override
-    public ReviewsEntity getById(Long id) {
-        return null;
-    }
-
-    @Override
-    public List<ReviewsEntity> getAll() {
-        return List.of();
+    public ReviewsEntity addReviews(ReviewsEntity reviews, Long productId) {
+        ProductEntity productEntity = productService.getById(productId);
+        List<ReviewsEntity> reviewsEntityList = productEntity.getReviews();
+        reviewsEntityList.add(reviews);
+        productEntity.setReviews(reviewsEntityList);
+        productService.update(productEntity);
+        return reviewsRepository.save(reviews);
     }
 }
