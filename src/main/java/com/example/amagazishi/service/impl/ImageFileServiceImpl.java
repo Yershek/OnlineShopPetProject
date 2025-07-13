@@ -18,6 +18,7 @@ public class ImageFileServiceImpl implements ImageFileService {
     @Value("${minio.bucket.name.images}")
     private String bucketName;
 
+    @Override
     public InputStream getByFileName(String fileName) {
         return minIoService.streamFile(bucketName, fileName);
     }

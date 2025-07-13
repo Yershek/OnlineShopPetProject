@@ -26,4 +26,9 @@ public class ReviewsServiceImpl implements ReviewsService {
         productService.update(productEntity);
         return reviewsRepository.save(reviews);
     }
+
+    @Override
+    public List<ReviewsEntity> getReviews(Long productId) {
+        return productService.getById(productId).getReviews();
+    }
 }
