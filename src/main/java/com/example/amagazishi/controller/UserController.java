@@ -4,6 +4,7 @@ import com.example.amagazishi.dto.UserDtoRequestRegister;
 import com.example.amagazishi.exception.BaseException;
 import com.example.amagazishi.mapper.UserMapper;
 import com.example.amagazishi.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearerAuth")
 public class UserController {
     private final UserService userService;
 

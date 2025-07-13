@@ -24,17 +24,17 @@ public class ProductEntity extends BaseEntity {
     @Column(name = "compound")
     private String compound;
     @Column(name = "discount", nullable = false)
-    private Integer discount;
-    @Column(name = "image_id")
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ImageEntity> image;
-    @Column(name = "video_id")
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<VideoEntity> video;
+    private Long discount;
     @Column(name = "active")
     @Enumerated(EnumType.STRING)
     private Active active;
-    @Column(name = "reviews_id")
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ReviewsEntity> reviews;
+    @ManyToOne
+    @JoinColumn(name = "image_id")
+    private ImageEntity image;
+    @ManyToOne
+    @JoinColumn(name = "video_id")
+    private VideoEntity video;
+    @ManyToOne
+    @JoinColumn(name = "reviews_id")
+    private ReviewsEntity review;
 }

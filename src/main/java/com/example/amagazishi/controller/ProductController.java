@@ -5,6 +5,7 @@ import com.example.amagazishi.dto.ProductResponse;
 import com.example.amagazishi.dto.ProductResponseMini;
 import com.example.amagazishi.mapper.ProductMapper;
 import com.example.amagazishi.service.ProductService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/product")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearerAuth")
 public class ProductController {
 
     private final ProductService productService;

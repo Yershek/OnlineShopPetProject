@@ -3,6 +3,7 @@ package com.example.amagazishi.controller;
 import com.example.amagazishi.entity.ImageEntity;
 import com.example.amagazishi.service.ImageFileService;
 import com.example.amagazishi.service.ImageService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/images")
+@SecurityRequirement(name = "bearerAuth")
 @RequiredArgsConstructor
 public class ImageController {
 

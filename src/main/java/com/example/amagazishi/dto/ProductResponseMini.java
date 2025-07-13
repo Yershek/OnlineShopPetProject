@@ -14,5 +14,5 @@ public class ProductResponseMini {
     private Long price;
     private String title;
     private String compound;
-    private Integer discount;
+    private Long discount;
 }

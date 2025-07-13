@@ -3,12 +3,14 @@ package com.example.amagazishi.controller;
 import com.example.amagazishi.entity.BasketEntity;
 import com.example.amagazishi.entity.ProductEntity;
 import com.example.amagazishi.service.BasketService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/baskets")
+@SecurityRequirement(name = "bearerAuth")
 @RequiredArgsConstructor
 public class BasketController {
 

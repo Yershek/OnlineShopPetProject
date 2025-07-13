@@ -14,9 +14,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @Table(name = "baskets")
 public class BasketEntity extends BaseEntity {
-    @OneToMany(mappedBy = "basket_id", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "basket_id")
     @Column(name = "product_id")
     private List<ProductEntity> product;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
     public BasketEntity addProduct(ProductEntity product) {
         this.product.add(product);

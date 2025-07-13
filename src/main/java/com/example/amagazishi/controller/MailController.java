@@ -1,6 +1,7 @@
 package com.example.amagazishi.controller;
 
 import com.example.amagazishi.service.MailService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/messages")
+@SecurityRequirement(name = "bearerAuth")
 @RequiredArgsConstructor
 public class MailController {
 

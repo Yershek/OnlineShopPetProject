@@ -38,7 +38,7 @@ create table if not exists products(
     description varchar not null,
     title varchar not null ,
     compound varchar not null ,
-    discount int,
+    discount bigint not null ,
     image_id bigint references images(id),
     video_id bigint references videos(id),
     reviews_id bigint references reviews(id),

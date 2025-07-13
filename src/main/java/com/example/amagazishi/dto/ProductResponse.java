@@ -19,7 +19,7 @@ public class ProductResponse {
     private Long price;
     private String title;
     private String compound;
-    private Integer discount;
+    private Long discount;
     private String description;
     private List<ImageEntity> images;
     private List<VideoEntity> videos;
