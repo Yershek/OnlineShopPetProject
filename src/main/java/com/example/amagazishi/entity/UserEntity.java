@@ -17,19 +17,16 @@ import java.util.List;
 @RequiredArgsConstructor
 @Table(name = "users")
 public class UserEntity extends BaseEntity implements UserDetails {
-    @Column(name = "username")
     private String username;
     @Column(name = "active_code")
     private String activeCode;
-    @Column(name = "email")
     private String email;
-    @Column(name = "password")
     private String password;
     @ManyToMany(mappedBy = "userEntityList",fetch = FetchType.EAGER)
     private List<RoleEntity> roles;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne
+    @JoinColumn(name = "basket_id", unique = true)
     private BasketEntity basket;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;

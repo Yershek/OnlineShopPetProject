@@ -1,6 +1,7 @@
 package com.example.amagazishi.controller;
 
 import com.example.amagazishi.dto.ProductRequestRegister;
+import com.example.amagazishi.dto.ProductRequestUpdate;
 import com.example.amagazishi.dto.ProductResponse;
 import com.example.amagazishi.dto.ProductResponseMini;
 import com.example.amagazishi.mapper.ProductMapper;
@@ -31,15 +32,13 @@ public class ProductController {
     }
 
     @PostMapping("/add-product")
-    public ResponseEntity<String> addProduct(@RequestBody ProductRequestRegister  productRequestRegister){
-        productService.save(ProductMapper.toProductEntity(productRequestRegister));
-        return ResponseEntity.ok("Продукт добавлен");
+    public ResponseEntity<ProductResponse> addProduct(@RequestBody ProductRequestRegister  productRequestRegister){
+        return ResponseEntity.ok(ProductMapper.toProductResponse(productService.update(productService.save(ProductMapper.toProductEntity(productRequestRegister)))));
     }
 
     @PutMapping("/update-product")
-    public ResponseEntity<String> updateProduct(@RequestBody ProductRequestRegister  productRequestRegister){
-        productService.update(ProductMapper.toProductEntity(productRequestRegister));
-        return ResponseEntity.ok("Продукт обнавлён");
+    public ResponseEntity<ProductResponse> updateProduct(@RequestBody ProductRequestUpdate  productRequestUpdate){
+        return ResponseEntity.ok(ProductMapper.toProductResponse(productService.update(ProductMapper.toProductEntityUpdate(productRequestUpdate))));
     }
 
     @GetMapping("/get-product-by-id")

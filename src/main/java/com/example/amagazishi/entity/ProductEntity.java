@@ -14,27 +14,35 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Table(name = "products")
-public class ProductEntity extends BaseEntity {
-    @Column(name = "price")
+public class ProductEntity{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Long price;
-    @Column(name = "description")
     private String description;
-    @Column(name = "title")
     private String title;
-    @Column(name = "compound")
     private String compound;
-    @Column(name = "discount", nullable = false)
     private Long discount;
-    @Column(name = "active")
-    @Enumerated(EnumType.STRING)
     private Active active;
-    @ManyToOne
-    @JoinColumn(name = "image_id")
-    private ImageEntity image;
-    @ManyToOne
-    @JoinColumn(name = "video_id")
-    private VideoEntity video;
-    @ManyToOne
-    @JoinColumn(name = "reviews_id")
-    private ReviewsEntity review;
+    @ManyToMany
+    @JoinTable(
+            name = "m2m_product_images",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "images_id")
+    )
+    private List<ImageEntity> images;
+    @ManyToMany
+    @JoinTable(
+            name = "m2m_product_video",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "video_id")
+    )
+    private List<VideoEntity> videos;
+    @ManyToMany
+    @JoinTable(
+            name = "m2m_product_reviews",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "reviews_id")
+    )
+    private List<ReviewsEntity> reviews;
 }

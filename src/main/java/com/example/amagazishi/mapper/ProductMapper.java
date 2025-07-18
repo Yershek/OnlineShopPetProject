@@ -1,6 +1,7 @@
 package com.example.amagazishi.mapper;
 
 import com.example.amagazishi.dto.ProductRequestRegister;
+import com.example.amagazishi.dto.ProductRequestUpdate;
 import com.example.amagazishi.dto.ProductResponse;
 import com.example.amagazishi.dto.ProductResponseMini;
 import com.example.amagazishi.entity.ProductEntity;
@@ -14,6 +15,18 @@ public class ProductMapper {
                 .title(productRequestRegister.getTitle())
                 .discount(productRequestRegister.getDiscount())
                 .compound(productRequestRegister.getCompound())
+                .build();
+    }
+
+    public static ProductEntity toProductEntityUpdate(ProductRequestUpdate productRequestUpdate) {
+        return ProductEntity
+                .builder()
+                .id(productRequestUpdate.getId())
+                .price(productRequestUpdate.getPrice())
+                .description(productRequestUpdate.getDescription())
+                .title(productRequestUpdate.getTitle())
+                .discount(productRequestUpdate.getDiscount())
+                .compound(productRequestUpdate.getCompound())
                 .build();
     }
 
@@ -36,8 +49,8 @@ public class ProductMapper {
                 .title(productEntity.getTitle())
                 .discount(productEntity.getDiscount())
                 .compound(productEntity.getCompound())
-                .images(productEntity.getImage())
-                .videos(productEntity.getVideo())
+                .images(productEntity.getImages())
+                .videos(productEntity.getVideos())
                 .reviews(productEntity.getReviews())
                 .description(productEntity.getDescription())
                 .build();

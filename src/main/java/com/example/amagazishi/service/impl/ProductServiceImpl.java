@@ -1,6 +1,5 @@
 package com.example.amagazishi.service.impl;
 
-import com.example.amagazishi.entity.BaseEntity;
 import com.example.amagazishi.entity.ProductEntity;
 import com.example.amagazishi.enums.Active;
 import com.example.amagazishi.repository.ProductRepository;
@@ -22,6 +21,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductEntity save(ProductEntity entity) {
+        entity.setActive(Active.ACTIVE);
         return productRepository.save(entity);
     }
 
@@ -35,12 +35,12 @@ public class ProductServiceImpl implements ProductService {
         old.setTitle(entity.getTitle());
         old.setDescription(entity.getDescription());
         old.setPrice(entity.getPrice());
-        old.setVideo(entity.getVideo());
+        old.setVideos(old.getVideos());
         old.setDiscount(entity.getDiscount());
         old.setCompound(entity.getCompound());
-        old.setImage(entity.getImage());
-        old.setReviews(entity.getReviews());
-        old.setActive(entity.getActive());
+        old.setImages(old.getImages());
+        old.setReviews(old.getReviews());
+        old.setActive(old.getActive());
         return productRepository.save(old);
     }
 

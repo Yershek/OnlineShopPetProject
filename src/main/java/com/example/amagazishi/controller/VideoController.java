@@ -20,7 +20,7 @@ public class VideoController {
     private final VideoService videoService;
     private final VideoFileService videoFileService;
 
-    @PostMapping("/save")
+    @PostMapping(name = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<VideoEntity> save(@RequestParam("file") MultipartFile file) {
         videoFileService.save(file);
         VideoEntity entity = VideoEntity

@@ -11,6 +11,9 @@ import com.example.amagazishi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BasketServiceImpl implements BasketService {
@@ -21,16 +24,12 @@ public class BasketServiceImpl implements BasketService {
     private final UserService userService;
 
     @Override
-    public BasketEntity addProductInBasket(ProductEntity product) {
-        if(!basketRepository.existsById(authService.getCurrentUser().getBasket().getId())) {
-            BasketEntity basket = new BasketEntity().addProduct(product);
-            UserEntity user = authService.getCurrentUser();
-            user.setBasket(basket);
-            userService.update(user);
-            return basketRepository.save(basket);
-        }
+    public BasketEntity addProductInBasket(Long id) {
+        ProductEntity product = productService.getById(id);
         BasketEntity basket = basketRepository.findById(authService.getCurrentUser().getBasket().getId()).orElseThrow(() -> new RuntimeException("проблема с корзиной обратитесь к Администратору"));
-        basket.addProduct(product);
+        List<ProductEntity> productEntityList = basket.getProduct();
+        productEntityList.add(product);
+        basket.setProduct(productEntityList);
         return basketRepository.save(basket);
     }
 
@@ -41,7 +40,9 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public BasketEntity deleteProductId(Long id) {
-        BasketEntity basket = basketRepository.findById(authService.getCurrentUser().getBasket().getId()).get().removeProduct(productService.getById(id));
+        BasketEntity basket = basketRepository.findById(authService.getCurrentUser().getBasket().getId()).orElseThrow(() -> new RuntimeException("проблема с корзиной обратитесь к Администратору"));
+        List<ProductEntity> productEntityList = basket.getProduct();
+        productEntityList.remove(id);
         return basketRepository.save(basket);
     }
 

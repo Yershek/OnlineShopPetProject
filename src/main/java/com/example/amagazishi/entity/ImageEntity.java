@@ -13,10 +13,10 @@ import lombok.*;
 @Table(name = "images")
 public class ImageEntity extends BaseEntity {
     @Column(name = "file_name")
-    private String filename;
+    private String fileName;
 
     public ImageEntity setFilename(String filename) {
-        this.filename = filename;
+        this.fileName = filename;
         return this;
     }
 }

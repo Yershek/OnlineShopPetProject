@@ -20,7 +20,7 @@ public class ImageController {
     private final ImageService imageService;
     private final ImageFileService imageFileService;
 
-    @PostMapping("/save-images")
+    @PostMapping(name = "/save-images",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ImageEntity> save(@RequestParam("image") MultipartFile image) {
         imageFileService.save(image);
         ImageEntity imageEntity = new ImageEntity();
@@ -30,7 +30,7 @@ public class ImageController {
 
     @GetMapping("/get-file-by-id/{id}")
     public ResponseEntity<InputStreamResource> getFileById(@PathVariable("id") Long id) {
-        String fileName = imageService.getById(id).getFilename();
+        String fileName = imageService.getById(id).getFileName();
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(imageFileService.getContentType(fileName)))
                 .body(new InputStreamResource(imageFileService.getByFileName(fileName)));

@@ -4,6 +4,10 @@ import com.example.amagazishi.entity.ProductEntity;
 
 import java.util.List;
 
-public interface ProductService extends BaseService<ProductEntity> {
+public interface ProductService{
     List<ProductEntity> findByTitleContaining(String title);
+    ProductEntity save(ProductEntity entity);
+    ProductEntity update(ProductEntity entity);
+    ProductEntity getById(Long id);
+    List<ProductEntity> getAll();
 }

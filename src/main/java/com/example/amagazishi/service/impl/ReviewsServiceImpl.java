@@ -19,12 +19,13 @@ public class ReviewsServiceImpl implements ReviewsService {
 
     @Override
     public ReviewsEntity addReviews(ReviewsEntity reviews, Long productId) {
+        reviewsRepository.save(reviews);
         ProductEntity productEntity = productService.getById(productId);
         List<ReviewsEntity> reviewsEntityList = productEntity.getReviews();
         reviewsEntityList.add(reviews);
         productEntity.setReviews(reviewsEntityList);
         productService.update(productEntity);
-        return reviewsRepository.save(reviews);
+        return reviews;
     }
 
     @Override

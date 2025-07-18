@@ -14,20 +14,13 @@ import java.util.List;
 @RequiredArgsConstructor
 @Table(name = "baskets")
 public class BasketEntity extends BaseEntity {
-    @OneToMany(mappedBy = "basket_id")
-    @Column(name = "product_id")
-    private List<ProductEntity> product;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @OneToOne(mappedBy = "basket")
     private UserEntity user;
-
-    public BasketEntity addProduct(ProductEntity product) {
-        this.product.add(product);
-        return this;
-    }
-
-    public BasketEntity removeProduct(ProductEntity product) {
-        this.product.remove(product);
-        return this;
-    }
+    @ManyToMany
+    @JoinTable(
+            name = "m2m_baskets_products",
+            joinColumns = @JoinColumn(name = "basket_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<ProductEntity> product;
 }

@@ -1,11 +1,14 @@
 package com.example.amagazishi.service.impl;
 
+import com.example.amagazishi.entity.BasketEntity;
 import com.example.amagazishi.entity.UserEntity;
 import com.example.amagazishi.exception.UserNotFoundException;
+import com.example.amagazishi.repository.BasketRepository;
 import com.example.amagazishi.repository.RoleRepository;
 import com.example.amagazishi.repository.UserRepository;
 import com.example.amagazishi.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +19,8 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final BasketRepository basketRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserEntity getByUsername(String username) {
@@ -29,6 +34,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity save(UserEntity entity) {
+        BasketEntity basket = BasketEntity.builder().build();
+        basketRepository.save(basket);
+        entity.setBasket(basket);
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
         return userRepository.save(entity);
     }
 
