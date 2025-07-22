@@ -47,22 +47,22 @@ create table if not exists products(
 );
 
 create table if not exists m2m_product_images(
-    product_id bigint references products(id) unique,
+    product_id bigint references products(id),
     images_id bigint references images(id)
 );
 
 create table if not exists m2m_product_video(
-    product_id bigint references products(id) unique,
+    product_id bigint references products(id),
     video_id bigint references videos(id)
 );
 
 create table if not exists m2m_product_reviews(
-    product_id bigint references products(id) unique,
+    product_id bigint references products(id),
     reviews_id bigint references reviews(id)
 );
 
 create table if not exists m2m_baskets_products(
-    basket_id bigint references baskets(id) unique,
+    basket_id bigint references baskets(id),
     product_id bigint references products(id)
 );
 
